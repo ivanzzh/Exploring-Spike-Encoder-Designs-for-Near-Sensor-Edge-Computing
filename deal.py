@@ -7,20 +7,6 @@ def load_config(file_path):
         config = yaml.safe_load(f)
     return config
 
-
-def load_config_multi_thread(file_path):
-    """使用 FileLock 确保多个进程不会同时读取 YAML 配置文件"""
-    lock_path = file_path + ".lock"  # 创建锁文件
-    lock = FileLock(lock_path)  # 初始化锁
-
-    with lock:  # **加锁，防止多个进程同时访问**
-        print(f"🔒 Acquiring lock to read {file_path}...")
-        with open(file_path, 'r') as f:
-            config = yaml.safe_load(f)
-        print(f"✅ Config loaded successfully from {file_path}")
-
-    return config
-
 # 保存配置文件
 def save_config(config, file_path):
     with open(file_path, 'w') as f:
