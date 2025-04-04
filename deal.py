@@ -1,127 +1,19 @@
 import yaml
 from filelock import FileLock
 
-# 读取配置文件
+# read configuration file
 def load_config(file_path):
     with open(file_path, 'r') as f:
         config = yaml.safe_load(f)
     return config
 
-# 保存配置文件
+# save configuration file
 def save_config(config, file_path):
     with open(file_path, 'w') as f:
         yaml.dump(config, f)
     # print('save file to ' + file_path)
 
-# 示例配置
-init_config = {
-    '0': {
-        'name': 'EMG_gesture',
-        'input_size': 8,
-        'hidden_size': 100,
-        'num_layers': 3,
-        'num_classes': 7,
-        'window_length': 100,
-        'batch_size': 40,
-        'data_split': False,
-        'all_data_path': '/data/zhenhang/EMG_gesture/dealed_data/entire_data_100len_50step.npz',
-        'split_ratio': 0.8,
-        'print_period': 119
-    },
-    '1': {
-        'name': 'FingerMovements',
-        'input_size': 28,
-        'hidden_size': 100,
-        'num_layers': 3,
-        'num_classes': 2,
-        'window_length': 50,
-        'batch_size': 4,
-        'data_split': True,
-        'all_data_path': None,
-        'split_ratio': 0.8,
-        'print_period': 39
-    },
-    '2': {
-        'name': 'BasicMotions',
-        'input_size': 8,
-        'hidden_size': 100,
-        'num_layers': 3,
-        'num_classes': 4,
-        'window_length': 100,
-        'batch_size': 4,
-        'data_split': True,
-        'all_data_path': None,
-        'split_ratio': 0.8,
-        'print_period': 10
-    },
-    '3': {
-        'name': 'Epilepsy',
-        'input_size': 3,
-        'hidden_size': 100,
-        'num_layers': 3,
-        'num_classes': 4,
-        'window_length': 207,
-        'batch_size': 4,
-        'data_split': True,
-        'all_data_path': None,
-        'split_ratio': 0.8,
-        'print_period': 20
-    },
-    '4': {
-        'name': 'JapaneseVowels',
-        'input_size': 12,
-        'hidden_size': 100,
-        'num_layers': 3,
-        'num_classes': 9,
-        'window_length': 29,
-        'batch_size': 4,
-        'data_split': True,
-        'all_data_path': None,
-        'split_ratio': 0.8,
-        'print_period': 20
-    },
-    '5': {
-        'name': 'RacketSports',
-        'input_size': 6,
-        'hidden_size': 100,
-        'num_layers': 3,
-        'num_classes': 4,
-        'window_length': 30,
-        'batch_size': 4,
-        'data_split': True,
-        'all_data_path': None,
-        'split_ratio': 0.8,
-        'print_period': 20
-    },
-    '6': {
-        'name': 'SelfRegulationSCP1',
-        'input_size': 6,
-        'hidden_size': 100,
-        'num_layers': 3,
-        'num_classes': 2,
-        'window_length': 896,
-        'batch_size': 4,
-        'data_split': True,
-        'all_data_path': None,
-        'split_ratio': 0.8,
-        'print_period': 20
-    },
-    '7': {
-        'name': 'EMG_Action',
-        'input_size': 8,
-        'hidden_size': 100,
-        'num_layers': 1,
-        'num_classes': 10,
-        'window_length': 1000,
-        'batch_size': 4,
-        'data_split': False,
-        'all_data_path': '/data/zhenhang/EMG_Action/EMG Physical Action Data Set/dealed_data/total_data_1000length_500step_Normalclasses.npz',
-        'split_ratio': 0.8,
-        'print_period': 74
-    }
-}
-
-
+# configuration for reservoir experiments
 Res_config = {
     '0': {
         'name': 'FingerMovements',
@@ -244,7 +136,7 @@ Res_config = {
     }
 }
 
-
+# configuration for population coding experiments
 config = {
     '0': {
         'name': 'EMG_gesture',
@@ -361,6 +253,6 @@ config = {
     }
 }
 
-# 保存配置到文件
+# autosave as importing
 save_config(config, 'config.yaml')
 save_config(Res_config, 'res_config.yaml')
