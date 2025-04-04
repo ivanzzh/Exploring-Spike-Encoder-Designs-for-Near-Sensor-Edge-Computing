@@ -166,7 +166,7 @@ def train(snn1, snn2, snn3, train_dataloader, criterion, optimizer, device, epoc
                 snn2.beta.data.clamp_(min=0.1)
                 snn3.beta.data.clamp_(min=0.1)
                 if is_early_stop:
-                    if epoch >= (point_num * point_update_period) and confidence1(out_spike_count, cross_target,
+                    if epoch >= (point_num * point_update_period) and confidence(out_spike_count, cross_target,
                                                                                   batch_size, correct_ratio):
                         early_stop += 1
                         if early_stop >= (point_num / 2):
