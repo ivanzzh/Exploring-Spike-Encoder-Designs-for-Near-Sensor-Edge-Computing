@@ -35,12 +35,9 @@ back_ratio = 0.1
 alpha = 0.9
 beta = 0.9
 voltage_lambda = 0.5
-if data_split:
-    train_data_path = '/home/zzhan281/dataset/{}/dealed_data/train_data.npz'.format(name)
-    test_data_path = '/home/zzhan281/dataset/{}/dealed_data/test_data.npz'.format(name)
-else:
-    all_data_path = dataset_config['all_data_path']
-image_direct = '/home/zzhan281/dataset/{}/result/eprop/'.format(name)
+train_data_path = 'dataset/{}/train_data.npz'.format(name)
+test_data_path = 'dataset/{}/test_data.npz'.format(name)
+image_direct = 'dataset/{}/result/'.format(name)
 point_update_period = 3
 correct_ratio = 0.9
 max_gradient_record = []
