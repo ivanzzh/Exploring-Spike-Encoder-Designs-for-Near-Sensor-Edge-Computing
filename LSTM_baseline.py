@@ -26,9 +26,9 @@ whether_mse = True
 epochs = 100
 learning_rate = 0.0001
 
-train_data_path = '/home/zzhan281/dataset/{}/dealed_data/train_data.npz'.format(name)
-test_data_path = '/home/zzhan281/dataset/{}/dealed_data/test_data.npz'.format(name)
-image_direct = '/home/zzhan281/dataset/{}/result/BPTT/'.format(name)
+train_data_path = 'dataset/{}/dealed_data/train_data.npz'.format(name)
+test_data_path = 'dataset/{}/dealed_data/test_data.npz'.format(name)
+image_direct = 'dataset/{}/result/'.format(name)
 
 
 def train(lstm, train_dataloader, criterion, optimizer, device, epoch):
