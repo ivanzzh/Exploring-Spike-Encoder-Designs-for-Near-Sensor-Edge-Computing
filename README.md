@@ -37,3 +37,14 @@ result folder is the default folder for execution results.
 You can also use other dataset by creating your own dataset class and data loaders.
 
 The dimension of data should be (number_of_samples, sequence_length, channels)
+
+
+If you use this code or find it helpful in your research, please consider citing the following works:
+
+SOLSA: Neuromorphic Spatiotemporal Online Learning for Synaptic Adaptation
+Zhenhang Zhang, Jingang Jin, Haowen Fang, Qinru Qiu. Proceedings of the 2024 29th Asia and South Pacific Design Automation Conference (ASP-DAC), Incheon, South Korea, 2024, pp. 848–853.
+DOI: 10.1109/ASP-DAC58780.2024.10473975
+
+Exploring Spike Encoder Designs for Near-Sensor Edge Computing (Accepted)
+Jingang Jin, Zhenhang Zhang, Qinru Qiu. Accepted to NICE 2025 (Neuro Inspired Computational Elements Conference).
+(To appear)
