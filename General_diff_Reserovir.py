@@ -8,7 +8,7 @@ from deal import load_config
 
 config_path = 'res_config.yaml'
 config = load_config('res_config.yaml')
-dataset_index = '5'
+dataset_index = '4'
 dataset_config = config[dataset_index]
 for key, value in dataset_config.items():
     print(f"{key}: {value}")
@@ -18,8 +18,6 @@ data_split = dataset_config['data_split']
 split_ratio = dataset_config['split_ratio']
 print_period = dataset_config['print_period']
 r_state = dataset_config['r_state']
-p_p = dataset_config['p_p']
-p_self = dataset_config['p_self']
 k_value = dataset_config['k_value']
 no_bias = True
 r_state_only = True
@@ -38,9 +36,10 @@ epochs = 200
 is_decay_constant = True
 is_early_stop = True
 back_ratio = 0.1
-train_data_path = 'dataset/{}/train_data.npz'.format(name)
-test_data_path = 'dataset/{}/test_data.npz'.format(name)
-image_direct = 'dataset/{}/result/'.format(name)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+train_data_path = os.path.join(BASE_DIR, 'dataset', f'{name}', 'train_data.npz')
+test_data_path = os.path.join(BASE_DIR, 'dataset', f'{name}', 'test_data.npz', )
+image_direct = os.path.join(BASE_DIR, 'dataset', f'{name}', 'result')
 point_update_period = 3
 point_num = dataset_config['point_num']
 voltage_lambda = 0.5
@@ -382,14 +381,8 @@ def call_reservoir(train_loader, test_loader, reservoir_name, input_size, output
 
 
 def main(r_name_lsit):
-    if data_split:
-        train_data = load_dataset(train_data_path, layer3_neuron_number)
-        test_data = load_dataset(test_data_path, layer3_neuron_number)
-    else:
-        all_data = load_dataset(all_data_path, layer3_neuron_number)
-        train_size = int(split_ratio * len(all_data))
-        test_size = len(all_data) - train_size
-        train_data, test_data = torch.utils.data.random_split(all_data, [train_size, test_size])
+    train_data = load_dataset(train_data_path, layer3_neuron_number)
+    test_data = load_dataset(test_data_path, layer3_neuron_number)
     train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=True, drop_last=True)
     test_loader = DataLoader(test_data, batch_size=batch_size, shuffle=True, drop_last=True)
     acc_dict = {}
