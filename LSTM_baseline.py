@@ -5,6 +5,7 @@ from deal import load_config
 import os
 import time
 
+
 config = load_config('res_config.yaml')
 dataset_index = '4'
 dataset_config = config[dataset_index]
@@ -26,9 +27,10 @@ whether_mse = True
 epochs = 100
 learning_rate = 0.0001
 
-train_data_path = 'dataset/{}/dealed_data/train_data.npz'.format(name)
-test_data_path = 'dataset/{}/dealed_data/test_data.npz'.format(name)
-image_direct = 'dataset/{}/result/'.format(name)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+train_data_path = os.path.join(BASE_DIR, 'dataset', f'{name}', 'train_data.npz')
+test_data_path = os.path.join(BASE_DIR, 'dataset', f'{name}', 'test_data.npz', )
+image_direct = os.path.join(BASE_DIR, 'dataset', f'{name}', 'result')
 
 
 def train(lstm, train_dataloader, criterion, optimizer, device, epoch):
@@ -126,10 +128,9 @@ def main():
 
     # make directory for new experiment results
     i = 0
-    path = ""
     while 1:
         model_directory = '{}_LSTM_baseline_{}'.format(name, i)
-        path = os.path.join(result_path, model_directory)
+        path = os.path.join(image_direct, model_directory)
         if not os.path.exists(path):
             os.makedirs(path)
             break
@@ -138,7 +139,15 @@ def main():
     checkpoint = os.path.join(path, model_name)
     torch.save(lstm_dict, checkpoint)
     print('Successfull save model {} to {}'.format(model_name, checkpoint))
-
+    image_name = '{}_LSTM_{:.4f}.jpg'.format(name, best_acc)
+    image_path = os.path.join(path, image_name)
+    plt.plot(epoch_list, acc_record, color='red', linewidth=2.0)
+    plt.xlabel('epoch')
+    plt.ylabel('acc')
+    plt.title('{} SOLSA best accuracy: {}'.format(name, best_acc), fontsize='large')
+    plt.savefig(image_path)
+    plt.show()
+    plt.close()
 
 if __name__ == '__main__':
     main()
