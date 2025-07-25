@@ -35,9 +35,10 @@ epochs = 200
 is_decay_constant = True
 is_early_stop = True
 back_ratio = 0.1
-train_data_path = 'dataset/{}/train_data.npz'.format(name)
-test_data_path = 'dataset/{}/test_data.npz'.format(name)
-image_direct = 'dataset/{}/result/'.format(name)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+train_data_path = os.path.join(BASE_DIR, 'dataset', f'{name}', 'train_data.npz')
+test_data_path = os.path.join(BASE_DIR, 'dataset', f'{name}', 'test_data.npz', )
+image_direct = os.path.join(BASE_DIR, 'dataset', f'{name}', 'result')
 point_update_period = 3
 point_num = dataset_config['point_num']
 voltage_lambda = 0.5
@@ -266,14 +267,8 @@ def main():
                  is_voltage_decay_constant=False, alpha=alpha, beta=beta)
     snn3 = ESNN(layer2_neuron_number, layer3_neuron_number, batch_size, voltage_lambda, is_decay_constant,
                  is_voltage_decay_constant=False, alpha=alpha, beta=beta)
-    if data_split:
-        train_data = load_dataset(train_data_path, layer3_neuron_number)
-        test_data = load_dataset(test_data_path, layer3_neuron_number)
-    else:
-        all_data = load_dataset(all_data_path, layer3_neuron_number)
-        train_size = int(split_ratio * len(all_data))
-        test_size = len(all_data) - train_size
-        train_data, test_data = torch.utils.data.random_split(all_data, [train_size, test_size])
+    train_data = load_dataset(train_data_path, layer3_neuron_number)
+    test_data = load_dataset(test_data_path, layer3_neuron_number)
     train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=True, drop_last=True)
     test_loader = DataLoader(test_data, batch_size=batch_size, shuffle=True, drop_last=True)
     params = list(snn1.parameters()) + list(snn2.parameters()) + list(snn3.parameters())
