@@ -48,3 +48,7 @@ DOI: 10.1109/ASP-DAC58780.2024.10473975
 Exploring Spike Encoder Designs for Near-Sensor Edge Computing (Accepted)
 Jingang Jin, Zhenhang Zhang, Qinru Qiu. Accepted to NICE 2025 (Neuro Inspired Computational Elements Conference).
 (To appear)
+
+## Notes
+This codebase has evolved over multiple experimental iterations and supports
+different configurations for system-level comparison.
