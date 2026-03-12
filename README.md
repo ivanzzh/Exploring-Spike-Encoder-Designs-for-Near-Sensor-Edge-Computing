@@ -14,7 +14,7 @@ Unzip the data into the dataset folder and update file paths in the code accordi
 LSTM_baseline.py is the code for LSTM baseline.
 General_pop_coding.py is the code for poppulation encoder with backend SNN model.
 General_Reserovir.py is the code for reservoir encoder with backend SNN model.
-General_Reserovir_comparsion.py s used to verify the necessity of online training.
+General_Reserovir_comparsion.py is used to verify the necessity of online training.
 General_diff_reserovi is the code for comparing the performance in five other reservior structure( Randomly Sparse Connected Reservoir, Recurrent Reservoir, Hierarchical Reservoir, Modular Reservoir, Distance-Constrained Reservoir)
 
 
